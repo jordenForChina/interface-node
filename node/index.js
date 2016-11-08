@@ -7,6 +7,7 @@ const querystring = require("querystring");
 // 自定义的module
 const getApi = require("./getApi.js");
 const  getApb = require('./getApb.js');
+const turingApi = require('./turingApi.js');
 // 主机名
 // 更改成自己的电脑外网Ip
 // 方法：ctrl+R ---》cmd---》ipconfig
@@ -17,7 +18,7 @@ var i = 0;
 //启动服务
 http.createServer(function(req,res){
 	// 获取浏览器地址
-	// 浏览器完整地址------->http://10.3.131.240:8888/getApi?callback=JSON_CALLBACK&page=2
+	// 浏览器完整地址------->接口：http://hostname:8888/getApi?callback=JSON_CALLBACK&page=2
 	// req.url--------------->getApi?callback=J&page=2&rows=1
 	//提取路径
 	console.log(i++)
@@ -41,10 +42,13 @@ http.createServer(function(req,res){
 		case '/getApb':
 			getApb.getApb(param,res);
 			break;
+		case '/turingApi':
+			turingApi.turingApi(param,res);
+			break;
 		default :
 			break;
 	}
 	// 用fs读取本地webroot中文件,通过二进制binary
 }).listen(port,hostname,function(){
-	console.log("在浏览器输入http://"+hostname+":"+port+"/getApi")
+	console.log("在浏览器输入接口http://"+hostname+":"+port+"/getApi?callback=JSON_CALLBACK&page=2")
 })

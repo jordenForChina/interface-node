@@ -13,7 +13,7 @@
 		var app = angular.module('jorden', []);
 		app.controller('news', ['$scope','$http', function($scope,$http){
 			$scope.name="jorden";
-			var url = "http://10.3.131.240:8888/getApi?callback=JSON_CALLBACK&page=1";
+			var url = "http://10.3.131.240:8888/turingApi?callback=JSON_CALLBACK&message=李想";
 			$http.jsonp(url).success(function(data){
 				console.log(data)
 			})
